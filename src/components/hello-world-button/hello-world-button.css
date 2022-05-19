@@ -1,0 +1,12 @@
+.hello-world-button {
+    font-size: 20px;
+    padding: 7px 15px;
+    background: violet;
+    color: white;
+    border: none;
+}
+
+.hello-world-text {
+    color: violet;
+    font-weight: bold;
+}
