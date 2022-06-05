@@ -4,9 +4,12 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: {
+        'hello-world': './src/hello-world.js',
+        eagle: './src/eagle.js',
+    },
     output: {
-        filename: 'bundle.[contenthash].js',
+        filename: '[name].[contenthash].js',
         path: path.resolve(__dirname, './dist'),
         publicPath: '',
     },
@@ -44,15 +47,24 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: 'styles.[contenthash].css',
+            filename: '[name].[contenthash].css',
         }),
         new CleanWebpackPlugin({
             cleanOnceBeforeBuildPatterns: ['**/*'], // set by default
         }),
         new HtmlWebpackPlugin({
+            filename: 'hello-world.html',
+            chunks: ['hello-world'],
             title: 'Hello world',
-            template: 'src/index.hbs',
-            description: 'Some description',
+            description: 'Hello world',
+            template: 'src/page-template.hbs',
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'eagle.html',
+            chunks: ['eagle'],
+            title: 'Eagle',
+            description: 'Eagle',
+            template: 'src/page-template.hbs',
         }),
     ],
 };
